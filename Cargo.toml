@@ -1,0 +1,50 @@
+[package]
+name = "antodo"
+version = "1.0.0"
+edition = "2024"
+rust-version = "1.88"
+authors = ["tothaa"]
+description = "A local-first desktop task planner with hierarchies, calendars, and finite recurrence"
+license = "GPL-2.0-only"
+repository = "https://github.com/tothaa/antodo"
+homepage = "https://github.com/tothaa/antodo"
+readme = "README.md"
+keywords = ["todo", "iced", "sqlite", "calendar", "productivity"]
+categories = ["gui"]
+include = ["src/**", "examples/**", "tests/**", "assets/**", "docs/**", "Cargo.toml", "Cargo.lock", "README.md", "AGENTS.md", "LICENSE", "CHANGELOG.md"]
+
+[features]
+default = ["gui"]
+gui = ["dep:iced", "dep:rfd", "dep:open"]
+
+[dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+chrono-tz = "0.10"
+iana-time-zone = "0.1"
+uuid = { version = "1", features = ["v7", "serde"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+rusqlite = { version = "0.37", features = ["bundled", "backup"] }
+rrule = "0.14"
+directories = "6"
+tempfile = "3"
+iced = { version = "0.14", default-features = false, features = ["tiny-skia", "x11", "wayland", "tokio", "markdown", "advanced"], optional = true }
+rfd = { version = "0.15", optional = true }
+open = { version = "5", optional = true }
+
+[[bin]]
+name = "antodo"
+path = "src/main.rs"
+required-features = ["gui"]
+
+[profile.release]
+lto = "thin"
+strip = true
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[[example]]
+name = "ui_preview"
+required-features = ["gui"]
