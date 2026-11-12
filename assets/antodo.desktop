@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=antodo
+GenericName=Task Planner
+Comment=Plan tasks, dates, and recurring work in a local workspace
+Exec=antodo %f
+TryExec=antodo
+Icon=antodo
+Terminal=false
+Categories=Office;ProjectManagement;
+Keywords=todo;tasks;planner;calendar;
+StartupNotify=true
+StartupWMClass=antodo
